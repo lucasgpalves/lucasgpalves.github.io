@@ -13,7 +13,7 @@ labels:
 summary: "A secure API that performs necessary CRUD functions, integrated with the database"
 ---
 
-<img class="img-fluid" src="../img/api-recipes/api-recipes-header.png.png">
+<img class="img-fluid" src="../img/api-recipes/api-recipes-header.png">
 
 Taberu Food API is an application interface that has been created to communicate between the requests made by the user on the frontend and the backend. As a BFF API, it has been custom developed, taking the business rules requested by the business.
 
