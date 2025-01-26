@@ -23,6 +23,6 @@ In this project I gained backend development experience in creating the applicat
 
 This project is associated with another which is the generation of books, which is another API, but developed in Python and FastAPI.
 
-{% gist 9defa1fb3f4eb593ba5fa9eacedca960 %}
+{% gist 1f03235d7789b15c159913cebb44e21f %}
  
 Source: <a href="https://github.com/theVacay/vacay">theVacay/vacay</a>
