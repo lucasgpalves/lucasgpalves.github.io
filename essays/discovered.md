@@ -10,10 +10,10 @@ labels:
   - Learning
 ---
 
-<img width="100px" class="rounded float-start pe-4" src="../img/igniting/paintbrushes.jpg">
+<img width="100px" class="rounded float-start pe-4" src="../img/essays/carproject/carproject.jpg">
 
-Ever since I first grasped a paintbrush, I’ve always been eager to learn about design. Design is such a complex concept. For example, when looking at abstract art, its meaning can be completely different for different people. It motivates a person to think thoughtfully and has the potential to submerge them in a sea of imagination. It’s that special relationship between the viewer and the art that makes something as technical as software engineering interesting to me.
+I took courses in web programming, using HTML, CSS, JavaSript and I had contact with computer assembly and maintenance. It turned out that my interest came very early, but I always saw it more as a hobby, I developed some games and deleted them, but I didn't know at the time what Git or Github were.
 
-I never used to think that design and technology went hand in hand.  Thus, learning about software engineering and the role of design has been incredibly interesting to me. Design, implementation, and management are just some of the many things I wish to learn more about. Good art, in a way, makes a person question it. They become joined in the idea of visualization – where captivation meets inspiration.
+During my elementary school years, I took part in a science fair, where I was able to develop a trolley that was guided by an LDR inside a black line strip, using Arduino to see how the code worked.
 
-I am now starting to take a Software Engineering class. I hope to learn a lot through the course, but I know it will be just the beginning of my journey. By the time I’m done with it, I hope I’ve learned enough to take the next step in my life as a developer. But until then, my fire will keep on burning.
+After that event I started researching more things, but I had to focus on high school. So during my 3 years of high school I didn't have any in-depth contact with technology. However, I took a year's sabbatical after high school and during that year I went back to school, finally deciding to go to university to study Systems Analysis and Development.
