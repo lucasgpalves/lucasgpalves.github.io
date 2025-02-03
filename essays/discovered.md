@@ -10,7 +10,7 @@ labels:
   - Learning
 ---
 
-<img width="100px" class="rounded float-start pe-4" src="../img/essays/carproject/carproject.jpg">
+<img width="400px" class="rounded float-start pe-4" src="../img/essays/carproject/carproject.jpg">
 
 I took courses in web programming, using HTML, CSS, JavaSript and I had contact with computer assembly and maintenance. It turned out that my interest came very early, but I always saw it more as a hobby, I developed some games and deleted them, but I didn't know at the time what Git or Github were.
 
