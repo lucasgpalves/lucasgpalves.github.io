@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Lucas Alves",
-    "label": "Backend Developer",
+    "label": "Engenheiro de Software",
     "picture": "https://github.com/lucasgpalves.png",
     "email": "alvez.lucas2702@gmail.com",
     "phone": "61 99416-1224",
     "website": "https://lucasgpalves.github.io",
-    "summary": "I'm a backend developer with a degree in systems analysis and development, who prioritizes delivery that adds quality and value.",
+    "summary": "Sou um programador backend com formação em análise e desenvolvimento de sistemas, que dá prioridade a entregas que acrescentem qualidade e valor.",
     "location": { "address": "", "postalCode": "71919180", "city": "Brazilia", "countryCode": "BR", "region": "Brazilia" },
     "profiles": [
       { "network": "github", "username": "lucasgpalves", "url": "http://github.com/lucasgpalves" },
@@ -14,11 +14,11 @@
     ]
   },
   "interests": [
-    { "name": "Web Development" },
-    { "name": "Cloud Computing" },
-    { "name": "Artificial Intelligence" },
-    { "name": "Game Development" },
-    { "name": "Robotics" }
+    { "name": "Desenvolvimento Web" },
+    { "name": "Computação em Nuvem" },
+    { "name": "Inteligência Artificial" },
+    { "name": "Redes de computadores" },
+    { "name": "Robotica" }
   ],
   "skills": [
     {
@@ -26,14 +26,14 @@
       "keywords": [ "Java", "Spring", "Python", "FastAPI", "Flask", "Node.js" ]
     },
     {
-      "name": "Toolsets/OS",
+      "name": "Ferramentas/OS",
       "keywords": [ "Windows", "Ubuntu", "Git/GitHub", "CI/CD", "Docker" ]
     }
   ],
   "education": [
     {
       "institution": "Faculdade Senac",
-      "area": "Systems Analysis and Development",
+      "area": "Análise e desenvolvimento de sistemas",
       "studyType": "Technologist Degree",
       "startDate": "2023-01-01",
       "endDate": "2024-12-01",
@@ -41,30 +41,16 @@
       ]
     }
   ],
-  "work": [
-    {
-      "company": "UH Manoa Board of Publications",
-      "position": "Web Developer",
-      "website": "",
-      "startDate": "2015-08-01",
-      "endDate": "Present",
-      "summary": "Head of online presence for Ka Leo",
-      "highlights": [
-        "Maintain, update, and oversee official college newspaper website",
-        "Drive, design and build student-community projects for UH Manoa"
-      ]
-    }
-  ],
   "volunteer": [
     {
-      "organization": "Faculdade Senac Federal District",
-      "position": "Project Manager",
+      "organization": "Faculdade Senac Distrito Federal",
+      "position": "Gerente de Projetos",
       "startDate": "2024-05-01",
       "endDate": "2024-09-01",
-      "summary": "Softskills analysis project manager",
+      "summary": "Gestor de projetos de análise Softskills",
       "highlights": [
-        "Project manage soft skills analysis tool ",
-        "Bridging the communication gap between the development team and clients"
+        "Ferramenta de análise das competências transversais da gestão de projectos",
+        "Colmatar o fosso de comunicação entre a equipa de desenvolvimento e os clientes"
       ]
     }
   ],

@@ -10,19 +10,19 @@ labels:
   - Spring Boot
   - PostgreSQL
   - GitHub
-summary: "A secure API that performs necessary CRUD functions, integrated with the database"
+summary: "Uma API segura que executa as funções CRUD necessárias, integrada na base de dados"
 ---
 
 <img class="img-fluid" src="../img/api-recipes/api-recipes-header.png">
 
-Taberu Food API is an application interface that has been created to communicate between the requests made by the user on the frontend and the backend. As a BFF API, it has been custom developed, taking the business rules requested by the business.
+A Taberu Food API é uma interface de aplicação que foi criada para comunicar entre os pedidos feitos pelo utilizador no frontend e no backend. Sendo uma API BFF, foi desenvolvida à medida, tendo em conta as regras de negócio solicitadas pela empresa.
 
-Taberu Food API is implemented locally, with the possibility of being deployed in [Docker](https://www.docker.com/), developed in [Spring](https://spring.io/) and connected to [PostgreSQL](https://www.postgresql.org/). It was developed in 2 weeks, I created a user registration system, use of tokens for authentication, creation of books, etc.
+A API do Taberu Food está implementada localmente, com a possibilidade de ser deployada em [Docker](https://www.docker.com/), desenvolvida em [Spring](https://spring.io/) e conectada ao [PostgreSQL](https://www.postgresql.org/). Foi desenvolvido em 2 semanas, criei um sistema de registo de utilizadores, utilização de tokens para autenticação, criação de livros, etc.
 
-In this project I gained backend development experience in creating the application and creating the database. 
+Neste projeto ganhei experiência de desenvolvimento backend na criação da aplicação e na criação da base de dados. 
 
-This project is associated with another which is the generation of books, which is another API, but developed in Python and FastAPI.
+Este projeto está associado a outro que é a geração de livros, que é outra API, mas desenvolvida em Python e FastAPI.
 
 {% gist 1f03235d7789b15c159913cebb44e21f %}
  
-Source: <a href="https://github.com/theVacay/vacay">theVacay/vacay</a>
+Source: <a href="https://github.com/lucasgpalves/api-recipes-collection">lucasgpalves/api-recipes-collection</a>
