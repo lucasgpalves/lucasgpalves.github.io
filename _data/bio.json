@@ -10,7 +10,9 @@
     "location": { "address": "", "postalCode": "71919180", "city": "Brazilia", "countryCode": "BR", "region": "Brazilia" },
     "profiles": [
       { "network": "github", "username": "lucasgpalves", "url": "http://github.com/lucasgpalves" },
-      { "network": "linkedin", "username": "lucasgpalves", "url": "http://linkedin.com/in/lucasgpalves" }
+      { "network": "linkedin", "username": "lucasgpalves", "url": "http://linkedin.com/in/lucasgpalves" },
+      { "network": "youtube", "username": "tetsutaiga", "url": "https://www.youtube.com/@tetsutaiga" },
+      { "network": "discord", "username": "tetsutaiga", "url": "https://discord.gg/5zqes67H" }
     ]
   },
   "interests": [
