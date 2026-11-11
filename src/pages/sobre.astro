@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StackWall from '../components/StackWall.astro';
+import { bio } from '../data/bio';
+---
+
+<BaseLayout
+  title={`Sobre | ${bio.name}`}
+  description={bio.summary}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Sobre</p>
+      <h1>{bio.name}</h1>
+      <p>{bio.summary}</p>
+      <p style="margin-top: 0.75rem; color: var(--ink-muted);">
+        {bio.location}
+      </p>
+      <div class="cta-row">
+        {
+          bio.profiles.map((profile) => (
+            <a
+              class="btn btn-ghost"
+              href={profile.url}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {profile.network}
+            </a>
+          ))
+        }
+        <a class="btn btn-primary" href={`mailto:${bio.email}`}>Email</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Experiência</p>
+          <h2>Trajetória</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        {
+          bio.work.map((job) => (
+            <div class="timeline-item">
+              <h3>
+                {job.position}
+                {'company' in job && job.company ? ` — ${job.company}` : ''}
+              </h3>
+              <p class="when">
+                {job.startDate} — {job.endDate}
+                {'status' in job && job.status ? ` · ${job.status}` : ''}
+              </p>
+              <p style="margin: 0; color: var(--ink-muted);">{job.summary}</p>
+              <ul class="prose">
+                {job.highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <StackWall />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Credenciais</p>
+          <h2>Certificações</h2>
+        </div>
+      </div>
+      <ul class="language-list">
+        {
+          bio.certifications.map((item) => (
+            <li>
+              <span class="language-name">{item.name}</span>
+              <span class="language-level">
+                {item.issuer} · {item.date}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Idiomas</p>
+          <h2>Comunicação</h2>
+        </div>
+      </div>
+      <ul class="language-list">
+        {
+          bio.languages.map((item) => (
+            <li>
+              <span class="language-name">{item.language}</span>
+              <span class="language-level">{item.fluency}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Formação</p>
+          <h2>Educação</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        {
+          bio.education.map((edu) => (
+            <div class="timeline-item">
+              <h3>
+                {edu.studyType}, {edu.area}
+              </h3>
+              <p class="when">
+                {edu.institution} · {edu.startDate} — {edu.endDate}
+              </p>
+            </div>
+          ))
+        }
+        {
+          bio.volunteer.map((item) => (
+            <div class="timeline-item">
+              <h3>
+                {item.position} — {item.organization}
+              </h3>
+              <p class="when">
+                {item.startDate} — {item.endDate}
+              </p>
+              <p style="margin: 0; color: var(--ink-muted);">{item.summary}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

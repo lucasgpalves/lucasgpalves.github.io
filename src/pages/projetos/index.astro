@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectList from '../../components/ProjectList.astro';
+
+const all = (await getCollection('projetos')).filter(
+  (p) => p.data.category === 'devops',
+);
+
+const professional = all
+  .filter((p) => p.data.context === 'professional')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const lab = all
+  .filter((p) => p.data.context === 'lab')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Projetos | Lucas Alves"
+  description="Cases profissionais de plataforma e lab deliberado — containers, CI/CD, Shiny, Ansible, Zabbix, AWS."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Projetos</p>
+      <h1>Cases de plataforma</h1>
+      <p>
+        Separado por contexto: primeiro a experiência profissional; depois lab
+        e estudos — sem misturar os dois sinais.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Trabalho</p>
+          <h2>Experiência profissional</h2>
+          <p>Entregas em ambientes de operação e projetos de plataforma.</p>
+        </div>
+      </div>
+      <ProjectList projects={professional} showContext={false} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Estudos</p>
+          <h2>Lab e prática deliberada</h2>
+          <p>
+            Homelab e DevFolio — útil para aprofundar stack, sem confundir com
+            entrega corporativa.
+          </p>
+        </div>
+      </div>
+      <ProjectList projects={lab} showContext={false} />
+    </div>
+  </section>
+</BaseLayout>

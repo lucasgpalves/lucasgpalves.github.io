@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const essays = (await getCollection('escritos'))
+  .filter((e) => e.data.published)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title="Escritos | Lucas Alves"
+  description="Notas de lab, DevFolio e reflexões — complementares à experiência profissional."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Escritos</p>
+      <h1>Notas e relatos</h1>
+      <p>Lab e DevFolio — contexto de estudo, separado das entregas profissionais.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container project-list">
+      {
+        essays.map((essay) => (
+          <a class="project-item" href={`/escritos/${essay.id}`}>
+            <div>
+              <h3>{essay.data.title}</h3>
+              <div class="meta">
+                {essay.data.labels.map((label) => (
+                  <span class="chip">{label}</span>
+                ))}
+              </div>
+            </div>
+            <span class="status">
+              {essay.data.date.toISOString().slice(0, 10)}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

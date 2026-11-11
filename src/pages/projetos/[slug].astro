@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projetos');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const statusLabel: Record<string, string> = {
+  done: 'Concluído',
+  'in-progress': 'Em operação',
+  historical: 'Histórico',
+};
+
+const contextLabel: Record<string, string> = {
+  professional: 'Experiência profissional',
+  lab: 'Lab / estudos',
+};
+---
+
+<BaseLayout title={`${project.data.title} | Lucas Alves`} description={project.data.summary}>
+  <article class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">
+        {contextLabel[project.data.context]} · {statusLabel[project.data.status]} · {project.data.date}
+      </p>
+      <h1>{project.data.title}</h1>
+      <p>{project.data.summary}</p>
+      <div class="meta" style="margin-top: 1rem;">
+        {project.data.labels.map((label) => <span class="chip">{label}</span>)}
+      </div>
+      {
+        project.data.repo && (
+          <p style="margin-top: 1.25rem;">
+            <a href={project.data.repo} rel="noopener noreferrer" target="_blank">
+              Repositório no GitHub →
+            </a>
+          </p>
+        )
+      }
+      {
+        project.data.image && (
+          <p style="margin-top: 1.5rem;">
+            <img src={project.data.image} alt="" />
+          </p>
+        )
+      }
+      <div style="margin-top: 2rem;">
+        <Content />
+      </div>
+      <p style="margin-top: 2.5rem;">
+        <a href="/projetos">← Todos os projetos</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

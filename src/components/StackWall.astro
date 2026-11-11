@@ -1,0 +1,31 @@
+---
+import { bio } from '../data/bio';
+---
+
+<section class="section" id="stack">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Stack</p>
+        <h2>Ferramentas por domínio</h2>
+        <p>O que uso para construir, automatizar e operar plataforma.</p>
+      </div>
+    </div>
+    <div class="stack-grid">
+      {
+        bio.skills.map((skill) => (
+          <div class="stack-block">
+            <h3>{skill.name}</h3>
+            <ul>
+              {skill.keywords.map((keyword) => (
+                <li>
+                  <span class="chip">{keyword}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

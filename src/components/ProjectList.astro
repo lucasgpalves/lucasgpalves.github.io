@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projetos'>[];
+  showContext?: boolean;
+}
+
+const { projects, showContext = false } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+  done: 'Concluído',
+  'in-progress': 'Em operação',
+  historical: 'Histórico',
+};
+
+const contextLabel: Record<string, string> = {
+  professional: 'Profissional',
+  lab: 'Lab',
+};
+---
+
+<div class="project-list">
+  {
+    projects.map((project) => (
+      <a class="project-item" href={`/projetos/${project.id}`}>
+        <div>
+          <h3>{project.data.title}</h3>
+          <p>{project.data.summary}</p>
+          <div class="meta">
+            {showContext && (
+              <span class="chip chip-context">{contextLabel[project.data.context]}</span>
+            )}
+            {project.data.labels.map((label) => (
+              <span class="chip">{label}</span>
+            ))}
+          </div>
+        </div>
+        <span class="status">{statusLabel[project.data.status]}</span>
+      </a>
+    ))
+  }
+</div>

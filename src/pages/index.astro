@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectList from '../components/ProjectList.astro';
+import StackWall from '../components/StackWall.astro';
+import { bio } from '../data/bio';
+
+const projects = (await getCollection('projetos'))
+  .filter(
+    (p) =>
+      p.data.featured &&
+      p.data.category === 'devops' &&
+      p.data.context === 'professional',
+  )
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <p class="hero-kicker">{bio.label}</p>
+      <h1>{bio.name}</h1>
+      <p class="hero-lead">{bio.summary}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/projetos">Ver projetos</a>
+        <a class="btn btn-ghost" href="/sobre">Trajetória e stack</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projetos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Experiência profissional</p>
+          <h2>O que foi entregue</h2>
+          <p>
+            Migração legado → containers, escala de Shiny, Ansible, Zabbix,
+            CI/CD e AWS — cases de ambiente de trabalho.
+          </p>
+        </div>
+        <a href="/projetos">Todos os projetos →</a>
+      </div>
+      <ProjectList projects={projects} />
+    </div>
+  </section>
+
+  <StackWall />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Agora</p>
+          <h2>No que estou focado</h2>
+        </div>
+      </div>
+      <ul class="prose">
+        {bio.focus.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
