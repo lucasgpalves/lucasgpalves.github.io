@@ -1,6 +1,8 @@
 ---
 title: Shiny Apps — Dockerfiles e escala
+titleEn: "Shiny Apps — Dockerfiles and scale"
 summary: Empacotamento e fluxo de entrega para Shiny Apps — Dockerfile como contrato e caminho claro para escalar instâncias.
+summaryEn: "Packaging and delivery flow for Shiny Apps — Dockerfile as the contract and a clear path to scale instances."
 date: 2025
 labels:
   - Docker

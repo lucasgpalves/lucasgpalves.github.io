@@ -1,5 +1,6 @@
 ---
 title: DevFolio
+titleEn: DevFolio
 date: 2025-07-24
 labels:
   - DevOps

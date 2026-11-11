@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import StackWall from '../../components/StackWall.astro';
+import { getBio } from '../../data/bio';
+import { localizePath, useTranslations } from '../../i18n/utils';
+
+const lang = 'en' as const;
+const bio = getBio(lang);
+const t = useTranslations(lang);
+
+const projects = (await getCollection('projetos'))
+  .filter(
+    (p) =>
+      p.data.featured &&
+      p.data.category === 'devops' &&
+      p.data.context === 'professional',
+  )
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout lang={lang}>
+  <section class="hero">
+    <div class="container">
+      <p class="hero-kicker">{bio.label}</p>
+      <h1>{bio.name}</h1>
+      <p class="hero-lead">{bio.summary}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={localizePath(lang, 'projects')}>{t('ctaProjects')}</a>
+        <a class="btn btn-ghost" href={localizePath(lang, 'about')}>{t('ctaAbout')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{t('featuredEyebrow')}</p>
+          <h2>{t('featuredTitle')}</h2>
+          <p>{t('featuredLead')}</p>
+        </div>
+        <a href={localizePath(lang, 'projects')}>{t('allProjects')}</a>
+      </div>
+      <ProjectList projects={projects} lang={lang} />
+    </div>
+  </section>
+
+  <StackWall lang={lang} />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{t('nowEyebrow')}</p>
+          <h2>{t('nowTitle')}</h2>
+        </div>
+      </div>
+      <ul class="prose">
+        {bio.focus.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

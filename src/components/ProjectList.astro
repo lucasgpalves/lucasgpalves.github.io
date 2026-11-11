@@ -1,32 +1,38 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../i18n/config';
+import { projectPath } from '../i18n/config';
+import { projectSummary, projectTitle } from '../i18n/content';
+import { useTranslations } from '../i18n/utils';
 
 interface Props {
   projects: CollectionEntry<'projetos'>[];
   showContext?: boolean;
+  lang?: Lang;
 }
 
-const { projects, showContext = false } = Astro.props;
+const { projects, showContext = false, lang = 'pt' } = Astro.props;
+const t = useTranslations(lang);
 
-const statusLabel: Record<string, string> = {
-  done: 'Concluído',
-  'in-progress': 'Em operação',
-  historical: 'Histórico',
+const statusLabel = {
+  done: t('statusDone'),
+  'in-progress': t('statusProgress'),
+  historical: t('statusHistorical'),
 };
 
-const contextLabel: Record<string, string> = {
-  professional: 'Profissional',
-  lab: 'Lab',
+const contextLabel = {
+  professional: t('contextChipPro'),
+  lab: t('contextChipLab'),
 };
 ---
 
 <div class="project-list">
   {
     projects.map((project) => (
-      <a class="project-item" href={`/projetos/${project.id}`}>
+      <a class="project-item" href={projectPath(lang, project.id)}>
         <div>
-          <h3>{project.data.title}</h3>
-          <p>{project.data.summary}</p>
+          <h3>{projectTitle(project, lang)}</h3>
+          <p>{projectSummary(project, lang)}</p>
           <div class="meta">
             {showContext && (
               <span class="chip chip-context">{contextLabel[project.data.context]}</span>

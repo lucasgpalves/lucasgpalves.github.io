@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getBio } from '../../../data/bio';
+import { writingPath } from '../../../i18n/config';
+import { essayTitle } from '../../../i18n/content';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'en' as const;
+const bio = getBio(lang);
+const t = useTranslations(lang);
+
+const essays = (await getCollection('escritos'))
+  .filter((e) => e.data.published)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t('navWriting')} | ${bio.name}`}
+  description={t('writingLead')}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{t('writingEyebrow')}</p>
+      <h1>{t('writingTitle')}</h1>
+      <p>{t('writingLead')}</p>
+      {t('writingNote') && <p class="i18n-note">{t('writingNote')}</p>}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container project-list">
+      {
+        essays.map((essay) => (
+          <a class="project-item" href={writingPath(lang, essay.id)}>
+            <div>
+              <h3>{essayTitle(essay, lang)}</h3>
+              <div class="meta">
+                {essay.data.labels.map((label) => (
+                  <span class="chip">{label}</span>
+                ))}
+              </div>
+            </div>
+            <span class="status">
+              {essay.data.date.toISOString().slice(0, 10)}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

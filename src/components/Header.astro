@@ -1,20 +1,34 @@
 ---
-import { bio } from '../data/bio';
+import { getBio } from '../data/bio';
+import type { Lang } from '../i18n/config';
+import { localizePath } from '../i18n/utils';
+import { switchLanguagePath, useTranslations } from '../i18n/utils';
 
+interface Props {
+  lang?: Lang;
+}
+
+const lang: Lang = Astro.props.lang ?? 'pt';
+const bio = getBio(lang);
+const t = useTranslations(lang);
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const otherLang: Lang = lang === 'pt' ? 'en' : 'pt';
+const otherHref = switchLanguagePath(pathname, otherLang);
 
 const links = [
-  { href: '/projetos', label: 'Projetos' },
-  { href: '/escritos', label: 'Escritos' },
-  { href: '/sobre', label: 'Sobre' },
+  { href: localizePath(lang, 'projects'), label: t('navProjects') },
+  { href: localizePath(lang, 'writing'), label: t('navWriting') },
+  { href: localizePath(lang, 'about'), label: t('navAbout') },
 ];
 ---
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/">{bio.name.split(' ')[0]} <span>Alves</span></a>
+    <a class="brand" href={localizePath(lang, 'home')}>
+      {bio.name.split(' ')[0]} <span>Alves</span>
+    </a>
     <div class="nav-right">
-      <nav aria-label="Principal">
+      <nav aria-label={t('navAria')}>
         <ul class="nav-links">
           {
             links.map((link) => {
@@ -31,12 +45,21 @@ const links = [
           }
         </ul>
       </nav>
+      <a
+        class="lang-toggle"
+        href={otherHref}
+        aria-label={t('langSwitchAria')}
+        title={t('langSwitchAria')}
+        hreflang={otherLang === 'en' ? 'en' : 'pt-BR'}
+      >
+        {t('langSwitch')}
+      </a>
       <button
         type="button"
         class="theme-toggle"
         data-theme-toggle
-        aria-label="Alternar tema"
-        title="Alternar tema"
+        aria-label={t('themeToggle')}
+        title={t('themeToggle')}
       >
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>
@@ -50,7 +73,7 @@ const links = [
   </div>
 </header>
 
-<script>
+<script define:vars={{ toLight: t('themeToLight'), toDark: t('themeToDark') }}>
   function currentTheme() {
     return document.documentElement.getAttribute('data-theme') === 'dark'
       ? 'dark'
@@ -62,10 +85,7 @@ const links = [
     localStorage.setItem('theme', theme);
     const toggle = document.querySelector('[data-theme-toggle]');
     if (toggle) {
-      toggle.setAttribute(
-        'aria-label',
-        theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro',
-      );
+      toggle.setAttribute('aria-label', theme === 'dark' ? toLight : toDark);
     }
   }
 

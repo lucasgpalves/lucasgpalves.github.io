@@ -1,16 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StackWall from '../components/StackWall.astro';
-import { bio } from '../data/bio';
+import { getBio } from '../data/bio';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'pt' as const;
+const bio = getBio(lang);
+const t = useTranslations(lang);
 ---
 
-<BaseLayout
-  title={`Sobre | ${bio.name}`}
-  description={bio.summary}
->
+<BaseLayout lang={lang} title={`${t('navAbout')} | ${bio.name}`} description={bio.summary}>
   <section class="page-hero">
     <div class="container">
-      <p class="eyebrow">Sobre</p>
+      <p class="eyebrow">{t('aboutEyebrow')}</p>
       <h1>{bio.name}</h1>
       <p>{bio.summary}</p>
       <p style="margin-top: 0.75rem; color: var(--ink-muted);">
@@ -29,7 +31,7 @@ import { bio } from '../data/bio';
             </a>
           ))
         }
-        <a class="btn btn-primary" href={`mailto:${bio.email}`}>Email</a>
+        <a class="btn btn-primary" href={`mailto:${bio.email}`}>{t('email')}</a>
       </div>
     </div>
   </section>
@@ -38,8 +40,8 @@ import { bio } from '../data/bio';
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Experiência</p>
-          <h2>Trajetória</h2>
+          <p class="eyebrow">{t('experienceEyebrow')}</p>
+          <h2>{t('experienceTitle')}</h2>
         </div>
       </div>
       <div class="timeline">
@@ -67,14 +69,14 @@ import { bio } from '../data/bio';
     </div>
   </section>
 
-  <StackWall />
+  <StackWall lang={lang} />
 
   <section class="section">
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Credenciais</p>
-          <h2>Certificações</h2>
+          <p class="eyebrow">{t('certsEyebrow')}</p>
+          <h2>{t('certsTitle')}</h2>
         </div>
       </div>
       <ul class="language-list">
@@ -96,8 +98,8 @@ import { bio } from '../data/bio';
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Idiomas</p>
-          <h2>Comunicação</h2>
+          <p class="eyebrow">{t('languagesEyebrow')}</p>
+          <h2>{t('languagesTitle')}</h2>
         </div>
       </div>
       <ul class="language-list">
@@ -117,8 +119,8 @@ import { bio } from '../data/bio';
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Formação</p>
-          <h2>Educação</h2>
+          <p class="eyebrow">{t('educationEyebrow')}</p>
+          <h2>{t('educationTitle')}</h2>
         </div>
       </div>
       <div class="timeline">

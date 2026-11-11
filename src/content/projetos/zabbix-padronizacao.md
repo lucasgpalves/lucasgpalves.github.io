@@ -1,6 +1,8 @@
 ---
 title: Zabbix — templates e padronização
+titleEn: "Zabbix — templates and standards"
 summary: Manutenção de Zabbix e Grafana com templates, triggers e dashboards alinhados ao negócio.
+summaryEn: "Maintained Zabbix and Grafana with templates, triggers and business-aligned dashboards."
 date: 2025
 labels:
   - Zabbix

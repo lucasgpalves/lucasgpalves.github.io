@@ -1,6 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBio } from '../../data/bio';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { essayTitle } from '../../i18n/content';
 
 export async function getStaticPaths() {
   const essays = await getCollection('escritos');
@@ -10,15 +13,19 @@ export async function getStaticPaths() {
   }));
 }
 
+const lang = 'pt' as const;
 const { essay } = Astro.props;
 const { Content } = await render(essay);
+const bio = getBio(lang);
+const t = useTranslations(lang);
+const title = essayTitle(essay, lang);
 ---
 
-<BaseLayout title={`${essay.data.title} | Lucas Alves`}>
+<BaseLayout lang={lang} title={`${title} | ${bio.name}`}>
   <article class="page-hero">
     <div class="container prose">
       <p class="eyebrow">{essay.data.date.toISOString().slice(0, 10)}</p>
-      <h1>{essay.data.title}</h1>
+      <h1>{title}</h1>
       <div class="meta" style="margin-top: 1rem;">
         {essay.data.labels.map((label) => <span class="chip">{label}</span>)}
       </div>
@@ -26,7 +33,7 @@ const { Content } = await render(essay);
         <Content />
       </div>
       <p style="margin-top: 2.5rem;">
-        <a href="/escritos">← Todos os escritos</a>
+        <a href={localizePath(lang, 'writing')}>{t('backWriting')}</a>
       </p>
     </div>
   </article>

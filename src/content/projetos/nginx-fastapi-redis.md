@@ -1,6 +1,8 @@
 ---
 title: Nginx — FastAPI e Redis
+titleEn: "Nginx — FastAPI and Redis"
 summary: Lab com docker-compose — Nginx como reverse proxy, API FastAPI e Redis no caminho.
+summaryEn: "docker-compose lab — Nginx as reverse proxy, FastAPI backend and Redis in the path."
 date: 2025
 labels:
   - Nginx

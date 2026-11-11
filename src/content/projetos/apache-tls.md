@@ -1,6 +1,8 @@
 ---
 title: Apache — TLS
+titleEn: "Apache — TLS"
 summary: Lab Linux — Apache com HTTPS (certificado self-signed), IP fixo e prática de configuração/troubleshooting.
+summaryEn: "Linux lab — Apache with HTTPS (self-signed cert), static IP and hands-on config/troubleshooting."
 date: 2025
 labels:
   - Linux

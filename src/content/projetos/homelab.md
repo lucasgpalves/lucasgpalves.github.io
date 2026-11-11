@@ -1,6 +1,8 @@
 ---
 title: Homelab — lab pessoal
+titleEn: "Homelab — personal lab"
 summary: Laboratório pessoal para GitOps, observabilidade, KVM, Docker e k3s — espaço para quebrar, documentar e transferir aprendizado.
+summaryEn: "Personal lab for GitOps, observability, KVM, Docker and k3s — a place to break, document and transfer learning."
 date: 2025
 labels:
   - Homelab

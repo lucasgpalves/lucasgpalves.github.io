@@ -1,6 +1,8 @@
 ---
 title: Migração legado — containers
+titleEn: "Legacy migration — containers"
 summary: Migração de serviços legados para runtime conteinerizado, com padronização de build/deploy e menos atrito entre ambientes.
+summaryEn: "Migrated legacy services to a containerized runtime with standardized build/deploy and less environment friction."
 date: 2025
 labels:
   - Docker

@@ -2,12 +2,19 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import { bio } from '../data/bio';
+import { getBio } from '../data/bio';
+import type { Lang } from '../i18n/config';
+import { paths } from '../i18n/config';
+import { switchLanguagePath } from '../i18n/utils';
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: Lang;
 }
+
+const lang: Lang = Astro.props.lang ?? 'pt';
+const bio = getBio(lang);
 
 const {
   title = `${bio.name} | ${bio.label}`,
@@ -15,10 +22,16 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const alternateLang: Lang = lang === 'pt' ? 'en' : 'pt';
+const alternateHref = new URL(
+  switchLanguagePath(Astro.url.pathname, alternateLang),
+  Astro.site,
+).toString();
+const htmlLang = lang === 'en' ? 'en' : 'pt-BR';
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,12 +39,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <meta name="author" content={bio.name} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={alternateLang === 'en' ? 'en' : 'pt-BR'} href={alternateHref} />
+    <link rel="alternate" hreflang={lang === 'en' ? 'en' : 'pt-BR'} href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={new URL(paths.pt.home, Astro.site).toString()} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'pt_BR'} />
     <title>{title}</title>
     <script is:inline>
       (() => {
@@ -48,11 +65,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <div class="site-shell">
-      <Header />
+      <Header lang={lang} />
       <main>
         <slot />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </div>
   </body>
 </html>

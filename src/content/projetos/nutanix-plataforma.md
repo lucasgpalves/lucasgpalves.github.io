@@ -1,6 +1,8 @@
 ---
 title: Nutanix — operação de plataforma
+titleEn: "Nutanix — platform operations"
 summary: Administração e automação em Nutanix (Ansible), com operação em escala de VMs junto a Hyper-V e Proxmox.
+summaryEn: "Nutanix administration and automation (Ansible), operating VMs at scale alongside Hyper-V and Proxmox."
 date: 2025
 labels:
   - Nutanix

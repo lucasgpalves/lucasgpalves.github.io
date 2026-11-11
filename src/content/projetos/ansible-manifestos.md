@@ -1,6 +1,8 @@
 ---
 title: Ansible — automação de configuração
+titleEn: "Ansible — configuration automation"
 summary: Playbooks e roles Ansible para descrever estado desejado em hosts Linux e reduzir configuração manual no dia a dia.
+summaryEn: "Ansible playbooks and roles to describe desired state on Linux hosts and cut repetitive manual work."
 date: 2025
 labels:
   - Ansible

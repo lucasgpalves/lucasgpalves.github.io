@@ -1,6 +1,8 @@
 ---
 title: AWS — CI/CD e infraestrutura
+titleEn: "AWS — CI/CD and infrastructure"
 summary: Pipelines de CI integrados a infraestrutura na AWS, com adaptação a ambientes já existentes do cliente.
+summaryEn: "CI pipelines integrated with AWS infrastructure, adapted to existing customer environments."
 date: 2026
 labels:
   - AWS

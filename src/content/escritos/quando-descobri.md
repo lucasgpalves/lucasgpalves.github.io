@@ -1,5 +1,6 @@
 ---
 title: Quando eu descobri
+titleEn: When I discovered it
 date: 2018-09-26
 labels:
   - Aprendizado

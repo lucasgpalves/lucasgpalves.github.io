@@ -1,15 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getBio } from '../data/bio';
+import { localizePath, useTranslations } from '../i18n/utils';
+
+const lang = 'pt' as const;
+const bio = getBio(lang);
+const t = useTranslations(lang);
 ---
 
-<BaseLayout title="Página não encontrada | Lucas Alves">
+<BaseLayout lang={lang} title={`${t('notFoundTitle')} | ${bio.name}`}>
   <section class="page-hero">
     <div class="container">
-      <p class="eyebrow">404</p>
-      <h1>Rota não encontrada</h1>
-      <p>Esse caminho não existe neste cluster.</p>
+      <p class="eyebrow">{t('notFoundEyebrow')}</p>
+      <h1>{t('notFoundHeading')}</h1>
+      <p>{t('notFoundLead')}</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="/">Voltar ao início</a>
+        <a class="btn btn-primary" href={localizePath(lang, 'home')}>{t('notFoundCta')}</a>
       </div>
     </div>
   </section>

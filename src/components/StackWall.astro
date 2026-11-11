@@ -1,14 +1,24 @@
 ---
-import { bio } from '../data/bio';
+import { getBio } from '../data/bio';
+import type { Lang } from '../i18n/config';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const lang: Lang = Astro.props.lang ?? 'pt';
+const bio = getBio(lang);
+const t = useTranslations(lang);
 ---
 
 <section class="section" id="stack">
   <div class="container">
     <div class="section-head">
       <div>
-        <p class="eyebrow">Stack</p>
-        <h2>Ferramentas por domínio</h2>
-        <p>O que uso para construir, automatizar e operar plataforma.</p>
+        <p class="eyebrow">{t('stackEyebrow')}</p>
+        <h2>{t('stackTitle')}</h2>
+        <p>{t('stackLead')}</p>
       </div>
     </div>
     <div class="stack-grid">

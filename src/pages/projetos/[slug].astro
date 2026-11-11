@@ -1,6 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBio } from '../../data/bio';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { projectSummary, projectTitle } from '../../i18n/content';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projetos');
@@ -10,29 +13,34 @@ export async function getStaticPaths() {
   }));
 }
 
+const lang = 'pt' as const;
 const { project } = Astro.props;
 const { Content } = await render(project);
+const bio = getBio(lang);
+const t = useTranslations(lang);
+const title = projectTitle(project, lang);
+const summary = projectSummary(project, lang);
 
-const statusLabel: Record<string, string> = {
-  done: 'Concluído',
-  'in-progress': 'Em operação',
-  historical: 'Histórico',
+const statusLabel = {
+  done: t('statusDone'),
+  'in-progress': t('statusProgress'),
+  historical: t('statusHistorical'),
 };
 
-const contextLabel: Record<string, string> = {
-  professional: 'Experiência profissional',
-  lab: 'Lab / estudos',
+const contextLabel = {
+  professional: t('contextProfessional'),
+  lab: t('contextLab'),
 };
 ---
 
-<BaseLayout title={`${project.data.title} | Lucas Alves`} description={project.data.summary}>
+<BaseLayout lang={lang} title={`${title} | ${bio.name}`} description={summary}>
   <article class="page-hero">
     <div class="container prose">
       <p class="eyebrow">
         {contextLabel[project.data.context]} · {statusLabel[project.data.status]} · {project.data.date}
       </p>
-      <h1>{project.data.title}</h1>
-      <p>{project.data.summary}</p>
+      <h1>{title}</h1>
+      <p>{summary}</p>
       <div class="meta" style="margin-top: 1rem;">
         {project.data.labels.map((label) => <span class="chip">{label}</span>)}
       </div>
@@ -40,7 +48,7 @@ const contextLabel: Record<string, string> = {
         project.data.repo && (
           <p style="margin-top: 1.25rem;">
             <a href={project.data.repo} rel="noopener noreferrer" target="_blank">
-              Repositório no GitHub →
+              {t('repoLink')}
             </a>
           </p>
         )
@@ -56,7 +64,7 @@ const contextLabel: Record<string, string> = {
         <Content />
       </div>
       <p style="margin-top: 2.5rem;">
-        <a href="/projetos">← Todos os projetos</a>
+        <a href={localizePath(lang, 'projects')}>{t('backProjects')}</a>
       </p>
     </div>
   </article>

@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getBio } from '../../../data/bio';
+import { localizePath, useTranslations } from '../../../i18n/utils';
+import { projectSummary, projectTitle } from '../../../i18n/content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projetos');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const lang = 'en' as const;
+const { project } = Astro.props;
+const { Content } = await render(project);
+const bio = getBio(lang);
+const t = useTranslations(lang);
+const title = projectTitle(project, lang);
+const summary = projectSummary(project, lang);
+
+const statusLabel = {
+  done: t('statusDone'),
+  'in-progress': t('statusProgress'),
+  historical: t('statusHistorical'),
+};
+
+const contextLabel = {
+  professional: t('contextProfessional'),
+  lab: t('contextLab'),
+};
+---
+
+<BaseLayout lang={lang} title={`${title} | ${bio.name}`} description={summary}>
+  <article class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">
+        {contextLabel[project.data.context]} · {statusLabel[project.data.status]} · {project.data.date}
+      </p>
+      <h1>{title}</h1>
+      <p>{summary}</p>
+      <div class="meta" style="margin-top: 1rem;">
+        {project.data.labels.map((label) => <span class="chip">{label}</span>)}
+      </div>
+      {
+        project.data.repo && (
+          <p style="margin-top: 1.25rem;">
+            <a href={project.data.repo} rel="noopener noreferrer" target="_blank">
+              {t('repoLink')}
+            </a>
+          </p>
+        )
+      }
+      {
+        project.data.image && (
+          <p style="margin-top: 1.5rem;">
+            <img src={project.data.image} alt="" />
+          </p>
+        )
+      }
+      <p class="i18n-note">{t('bodyInOtherLang')}</p>
+      <div style="margin-top: 2rem;">
+        <Content />
+      </div>
+      <p style="margin-top: 2.5rem;">
+        <a href={localizePath(lang, 'projects')}>{t('backProjects')}</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

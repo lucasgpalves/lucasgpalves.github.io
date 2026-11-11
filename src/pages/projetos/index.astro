@@ -2,6 +2,12 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectList from '../../components/ProjectList.astro';
+import { getBio } from '../../data/bio';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'pt' as const;
+const bio = getBio(lang);
+const t = useTranslations(lang);
 
 const all = (await getCollection('projetos')).filter(
   (p) => p.data.category === 'devops',
@@ -17,17 +23,15 @@ const lab = all
 ---
 
 <BaseLayout
-  title="Projetos | Lucas Alves"
-  description="Cases profissionais de plataforma e lab deliberado — containers, CI/CD, Shiny, Ansible, Zabbix, AWS."
+  lang={lang}
+  title={`${t('navProjects')} | ${bio.name}`}
+  description={t('featuredLead')}
 >
   <section class="page-hero">
     <div class="container">
-      <p class="eyebrow">Projetos</p>
-      <h1>Cases de plataforma</h1>
-      <p>
-        Separado por contexto: primeiro a experiência profissional; depois lab
-        e estudos — sem misturar os dois sinais.
-      </p>
+      <p class="eyebrow">{t('projectsEyebrow')}</p>
+      <h1>{t('projectsTitle')}</h1>
+      <p>{t('projectsLead')}</p>
     </div>
   </section>
 
@@ -35,12 +39,12 @@ const lab = all
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Trabalho</p>
-          <h2>Experiência profissional</h2>
-          <p>Entregas em ambientes de operação e projetos de plataforma.</p>
+          <p class="eyebrow">{t('workEyebrow')}</p>
+          <h2>{t('workTitle')}</h2>
+          <p>{t('workLead')}</p>
         </div>
       </div>
-      <ProjectList projects={professional} showContext={false} />
+      <ProjectList projects={professional} lang={lang} />
     </div>
   </section>
 
@@ -48,15 +52,12 @@ const lab = all
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Estudos</p>
-          <h2>Lab e prática deliberada</h2>
-          <p>
-            Homelab e DevFolio — útil para aprofundar stack, sem confundir com
-            entrega corporativa.
-          </p>
+          <p class="eyebrow">{t('labEyebrow')}</p>
+          <h2>{t('labTitle')}</h2>
+          <p>{t('labLead')}</p>
         </div>
       </div>
-      <ProjectList projects={lab} showContext={false} />
+      <ProjectList projects={lab} lang={lang} />
     </div>
   </section>
 </BaseLayout>

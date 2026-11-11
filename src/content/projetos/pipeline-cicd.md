@@ -1,6 +1,8 @@
 ---
 title: CI/CD — pipelines multi-ferramenta
+titleEn: "CI/CD — multi-tool pipelines"
 summary: Lab de pipelines em GitLab CI e GitHub Actions — secrets, templates e reaproveitamento entre ambientes.
+summaryEn: "Lab pipelines in GitLab CI and GitHub Actions — secrets, templates and reuse across environments."
 date: 2025
 labels:
   - CI/CD

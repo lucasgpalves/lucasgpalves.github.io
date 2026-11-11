@@ -1,6 +1,8 @@
 ---
 title: AWX — Kubernetes
+titleEn: "AWX — Kubernetes"
 summary: Deploy do AWX Operator em Kubernetes (lab) com restrição de recursos — prática de automação e operação de control plane.
+summaryEn: "AWX Operator deploy on Kubernetes (lab) under resource constraints — automation and control-plane practice."
 date: 2025
 labels:
   - Kubernetes
