@@ -10,7 +10,6 @@ labels:
   - Ansible
   - GitOps
 featured: false
-status: done
 category: devops
 context: lab
 order: 110

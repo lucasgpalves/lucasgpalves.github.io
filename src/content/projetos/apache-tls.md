@@ -10,7 +10,6 @@ labels:
   - TLS
   - VirtualBox
 featured: false
-status: done
 category: devops
 context: lab
 order: 120

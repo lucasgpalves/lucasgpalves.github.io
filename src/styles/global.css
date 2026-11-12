@@ -424,9 +424,7 @@ html[data-theme='dark'] .btn-primary:hover {
 }
 
 .project-item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
+  display: block;
   align-items: start;
   padding: 1.25rem 0;
   border-top: 1px solid var(--line);
@@ -700,10 +698,6 @@ a.language-name:hover {
 
   .settings-panel {
     right: -0.15rem;
-  }
-
-  .project-item {
-    grid-template-columns: 1fr;
   }
 }
 

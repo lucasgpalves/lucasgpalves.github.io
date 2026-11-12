@@ -10,7 +10,6 @@ labels:
   - CI/CD
   - Escala
 featured: true
-status: done
 category: devops
 context: professional
 order: 20

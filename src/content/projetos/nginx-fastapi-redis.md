@@ -10,7 +10,6 @@ labels:
   - Redis
   - Docker
 featured: false
-status: in-progress
 category: devops
 context: lab
 order: 130

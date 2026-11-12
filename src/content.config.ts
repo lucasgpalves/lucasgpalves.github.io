@@ -11,7 +11,6 @@ const projetos = defineCollection({
     date: z.coerce.number(),
     labels: z.array(z.string()),
     featured: z.boolean().default(false),
-    status: z.enum(['done', 'in-progress', 'historical']).default('done'),
     category: z.enum(['devops', 'backend']).default('devops'),
     /** professional = entrega em ambiente de trabalho; lab = estudo/homelab */
     context: z.enum(['professional', 'lab']).default('lab'),

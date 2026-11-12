@@ -14,12 +14,6 @@ interface Props {
 const { projects, showContext = false, lang = 'pt' } = Astro.props;
 const t = useTranslations(lang);
 
-const statusLabel = {
-  done: t('statusDone'),
-  'in-progress': t('statusProgress'),
-  historical: t('statusHistorical'),
-};
-
 const contextLabel = {
   professional: t('contextChipPro'),
   lab: t('contextChipLab'),
@@ -42,7 +36,6 @@ const contextLabel = {
             ))}
           </div>
         </div>
-        <span class="status">{statusLabel[project.data.status]}</span>
       </a>
     ))
   }

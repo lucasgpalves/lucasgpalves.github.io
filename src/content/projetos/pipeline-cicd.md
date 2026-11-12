@@ -10,7 +10,6 @@ labels:
   - GitHub Actions
   - Secrets
 featured: false
-status: in-progress
 category: devops
 context: lab
 order: 140

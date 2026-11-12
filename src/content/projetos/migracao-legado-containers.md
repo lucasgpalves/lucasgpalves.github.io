@@ -10,7 +10,6 @@ labels:
   - Migração
   - Linux
 featured: true
-status: done
 category: devops
 context: professional
 order: 10

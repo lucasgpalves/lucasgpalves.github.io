@@ -9,7 +9,6 @@ labels:
   - CI/CD
   - Infra
 featured: true
-status: in-progress
 category: devops
 context: professional
 order: 55
