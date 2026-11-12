@@ -1,8 +1,8 @@
 ---
 title: Nutanix — operação de plataforma
 titleEn: "Nutanix — platform operations"
-summary: Administração e automação em Nutanix (Ansible), com operação em escala de VMs junto a Hyper-V e Proxmox.
-summaryEn: "Nutanix administration and automation (Ansible), operating VMs at scale alongside Hyper-V and Proxmox."
+summary: Administração e automação em Nutanix (Ansible), com operação de VMs em ambiente multi-hipervisor.
+summaryEn: "Nutanix administration and automation (Ansible), operating VMs in a multi-hypervisor environment."
 date: 2025
 labels:
   - Nutanix
@@ -16,11 +16,11 @@ context: professional
 order: 25
 ---
 
-Experiência profissional (Lenatec) com **Nutanix**: provisionamento automatizado via Ansible e administração de ambiente hiperconvergente em escala, convivendo com Hyper-V e Proxmox.
+Experiência profissional com **Nutanix**: provisionamento automatizado via Ansible e administração de ambiente hiperconvergente, convivendo com outros hipervisores.
 
 ### Destaques
 - Automação de provisionamento de VMs
-- Operação integrada a Linux, monitoramento (Zabbix/Grafana) e automação
-- Escala de dezenas/centenas de VMs no parque administrado
+- Operação integrada a Linux, monitoramento e automação
+- Padronização de práticas em ambiente virtualizado
 
 Sem detalhes sensíveis de cliente — o valor do case é domínio de HCI e a ponte com práticas de DevOps.

@@ -5,7 +5,6 @@ const shared = {
   fullName: 'Lucas Gabriel Paiva Alves',
   label: 'DevOps / Platform / Infra',
   email: 'alvez.lucas2702@gmail.com',
-  phone: '(61) 99416-1224',
   website: 'https://lucasgpalves.github.io',
   location: {
     pt: 'Brasília, DF — Brasil',
@@ -49,8 +48,8 @@ const localized = {
     summary:
       'Analista de Sistemas DevOps com foco em open source, cloud e plataforma — Linux, Kubernetes, CI/CD, Ansible, virtualização (Nutanix/Proxmox) e observabilidade (Zabbix/Grafana).',
     focus: [
-      'Kubernetes, Rancher, Harbor e pipelines GitLab CI',
-      'Automação de infra (Ansible) e operação em Nutanix / Hyper-V / Proxmox',
+      'Kubernetes, registries e pipelines CI/CD',
+      'Automação de infra (Ansible) e operação em virtualização / HCI',
       'Certificações em andamento: LPIC-3 (305) e CKA',
       'IA como apoio a otimização de processos e segurança na entrega — sem sair do eixo DevOps/Platform',
     ],
@@ -96,10 +95,10 @@ const localized = {
           'Implantação e operação de sistemas em Kubernetes, pipelines GitLab CI e manutenção de ambientes VM e conteinerizados.',
         highlights: [
           'Implantação de sistemas em cluster Kubernetes',
-          'Desenvolvimento de pipelines CI/CD com GitLab',
+          'Desenvolvimento de pipelines CI/CD',
           'Manutenção de sistemas novos e legados em VMs e containers',
-          'Gestão de infraestrutura Kubernetes via Rancher e CLI',
-          'Suporte ao desenvolvimento e publicação de imagens Docker no Harbor',
+          'Gestão de infraestrutura Kubernetes (plataforma e CLI)',
+          'Apoio a build e publicação de imagens Docker em registry privado',
         ],
       },
       {
@@ -110,11 +109,11 @@ const localized = {
         summary:
           'Administração de ambientes virtualizados e automação de infraestrutura, com monitoramento e identidade.',
         highlights: [
-          'Automação de provisionamento de VMs no Nutanix via Ansible',
-          'Administração de mais de 150 VMs (Nutanix, Hyper-V e Proxmox)',
-          'Suporte a servidores Linux/Windows Server e clusters Kubernetes (Docker/K8s)',
-          'Administração de Active Directory (on-prem e Azure AD), Exchange Online, Teams e SharePoint',
-          'Automação de rotinas no GLPI e manutenção de Zabbix/Grafana com dashboards de negócio',
+          'Automação de provisionamento de VMs em HCI via Ansible',
+          'Operação de parque virtualizado em hipervisores heterogêneos',
+          'Suporte a servidores Linux/Windows Server e ambientes conteinerizados',
+          'Administração de identidade e colaboração (diretório e serviços em nuvem)',
+          'Automação de rotinas de service desk e manutenção de observabilidade',
         ],
       },
       {
@@ -154,8 +153,8 @@ const localized = {
     summary:
       'DevOps Systems Analyst focused on open source, cloud and platform engineering — Linux, Kubernetes, CI/CD, Ansible, virtualization (Nutanix/Proxmox) and observability (Zabbix/Grafana).',
     focus: [
-      'Kubernetes, Rancher, Harbor and GitLab CI pipelines',
-      'Infra automation (Ansible) and operations on Nutanix / Hyper-V / Proxmox',
+      'Kubernetes, registries and CI/CD pipelines',
+      'Infra automation (Ansible) and virtualization / HCI operations',
       'Certifications in progress: LPIC-3 (305) and CKA',
       'Using AI to support process optimization and delivery security — without leaving the DevOps/Platform track',
     ],
@@ -201,10 +200,10 @@ const localized = {
           'Deploying and operating systems on Kubernetes, GitLab CI pipelines, and maintaining VM and containerized environments.',
         highlights: [
           'Deployed systems onto Kubernetes clusters',
-          'Built CI/CD pipelines with GitLab',
+          'Built CI/CD pipelines',
           'Maintained new and legacy systems on VMs and containers',
-          'Managed Kubernetes infrastructure via Rancher and CLI',
-          'Supported Docker image builds and publishes to Harbor',
+          'Managed Kubernetes infrastructure (platform tooling and CLI)',
+          'Supported Docker image builds and publishes to a private registry',
         ],
       },
       {
@@ -215,11 +214,11 @@ const localized = {
         summary:
           'Administered virtualized environments and infrastructure automation, with monitoring and identity services.',
         highlights: [
-          'Automated Nutanix VM provisioning with Ansible',
-          'Administered 150+ VMs across Nutanix, Hyper-V and Proxmox',
-          'Supported Linux/Windows Server and Kubernetes clusters (Docker/K8s)',
-          'Administered Active Directory (on-prem and Azure AD), Exchange Online, Teams and SharePoint',
-          'Automated GLPI routines and maintained Zabbix/Grafana with business-focused dashboards',
+          'Automated VM provisioning on HCI with Ansible',
+          'Operated a multi-hypervisor virtualization estate',
+          'Supported Linux/Windows Server and containerized environments',
+          'Administered identity and collaboration (directory and cloud services)',
+          'Automated service-desk routines and maintained observability tooling',
         ],
       },
       {
@@ -264,7 +263,6 @@ export function getBio(lang: Lang = 'pt') {
     fullName: shared.fullName,
     label: shared.label,
     email: shared.email,
-    phone: shared.phone,
     website: shared.website,
     picture: shared.picture,
     profiles: shared.profiles,
