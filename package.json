@@ -12,8 +12,8 @@
     "astro": "astro",
     "cv:pdf": "node scripts/generate-cv-pdf.mjs"
   },
-
   "dependencies": {
+    "@lucide/astro": "^1.72.0",
     "astro": "^5.16.6"
   }
 }

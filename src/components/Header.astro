@@ -1,4 +1,7 @@
 ---
+import Moon from '@lucide/astro/icons/moon';
+import Settings from '@lucide/astro/icons/settings';
+import Sun from '@lucide/astro/icons/sun';
 import { getBio } from '../data/bio';
 import type { Lang } from '../i18n/config';
 import { localizePath } from '../i18n/utils';
@@ -12,8 +15,8 @@ const lang: Lang = Astro.props.lang ?? 'pt';
 const bio = getBio(lang);
 const t = useTranslations(lang);
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const otherLang: Lang = lang === 'pt' ? 'en' : 'pt';
-const otherHref = switchLanguagePath(pathname, otherLang);
+const ptHref = switchLanguagePath(pathname, 'pt');
+const enHref = switchLanguagePath(pathname, 'en');
 
 const links = [
   { href: localizePath(lang, 'projects'), label: t('navProjects') },
@@ -45,53 +48,148 @@ const links = [
           }
         </ul>
       </nav>
-      <a
-        class="lang-toggle"
-        href={otherHref}
-        aria-label={t('langSwitchAria')}
-        title={t('langSwitchAria')}
-        hreflang={otherLang === 'en' ? 'en' : 'pt-BR'}
-      >
-        {t('langSwitch')}
-      </a>
-      <button
-        type="button"
-        class="theme-toggle"
-        data-theme-toggle
-        aria-label={t('themeToggle')}
-        title={t('themeToggle')}
-      >
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path>
-        </svg>
-      </button>
+
+      <div class="settings" data-settings>
+        <button
+          type="button"
+          class="settings-toggle"
+          data-settings-toggle
+          aria-expanded="false"
+          aria-controls="site-settings-panel"
+          aria-label={t('settingsAria')}
+          title={t('settingsTitle')}
+        >
+          <Settings size={18} stroke-width={1.8} aria-hidden="true" />
+        </button>
+
+        <div
+          class="settings-panel"
+          id="site-settings-panel"
+          data-settings-panel
+          hidden
+          role="dialog"
+          aria-label={t('settingsTitle')}
+        >
+          <p class="settings-heading">{t('settingsTitle')}</p>
+
+          <div class="settings-group">
+            <p class="settings-label">{t('settingsLanguage')}</p>
+            <div class="settings-options" role="group" aria-label={t('settingsLanguage')}>
+              <a
+                class:list={['settings-option', { active: lang === 'pt' }]}
+                href={ptHref}
+                hreflang="pt-BR"
+                aria-current={lang === 'pt' ? 'true' : undefined}
+              >
+                {t('langPt')}
+              </a>
+              <a
+                class:list={['settings-option', { active: lang === 'en' }]}
+                href={enHref}
+                hreflang="en"
+                aria-current={lang === 'en' ? 'true' : undefined}
+              >
+                {t('langEn')}
+              </a>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <p class="settings-label">{t('settingsTheme')}</p>
+            <div class="settings-options" role="group" aria-label={t('settingsTheme')}>
+              <button
+                type="button"
+                class="settings-option"
+                data-theme-choice="light"
+                aria-pressed="false"
+              >
+                <Sun class="settings-icon" size={15} stroke-width={1.8} aria-hidden="true" />
+                {t('themeLight')}
+              </button>
+              <button
+                type="button"
+                class="settings-option"
+                data-theme-choice="dark"
+                aria-pressed="false"
+              >
+                <Moon class="settings-icon" size={15} stroke-width={1.8} aria-hidden="true" />
+                {t('themeDark')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<script define:vars={{ toLight: t('themeToLight'), toDark: t('themeToDark') }}>
+<script
+  define:vars={{
+    openLabel: t('settingsAria'),
+    closeLabel: t('settingsCloseAria'),
+  }}
+>
   function currentTheme() {
     return document.documentElement.getAttribute('data-theme') === 'dark'
       ? 'dark'
       : 'light';
   }
 
+  function syncThemeButtons() {
+    const theme = currentTheme();
+    document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+      const active = button.getAttribute('data-theme-choice') === theme;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    const toggle = document.querySelector('[data-theme-toggle]');
-    if (toggle) {
-      toggle.setAttribute('aria-label', theme === 'dark' ? toLight : toDark);
-    }
+    syncThemeButtons();
   }
 
-  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-    button.addEventListener('click', () => {
-      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+  function setSettingsOpen(root, open) {
+    const toggle = root.querySelector('[data-settings-toggle]');
+    const panel = root.querySelector('[data-settings-panel]');
+    if (!toggle || !panel) return;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? closeLabel : openLabel);
+    panel.hidden = !open;
+    root.classList.toggle('is-open', open);
+  }
+
+  document.querySelectorAll('[data-settings]').forEach((root) => {
+    const toggle = root.querySelector('[data-settings-toggle]');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      setSettingsOpen(root, open);
+    });
+
+    root.querySelectorAll('[data-theme-choice]').forEach((button) => {
+      button.addEventListener('click', () => {
+        applyTheme(button.getAttribute('data-theme-choice'));
+      });
     });
   });
+
+  document.addEventListener('click', (event) => {
+    document.querySelectorAll('[data-settings].is-open').forEach((root) => {
+      if (!root.contains(event.target)) setSettingsOpen(root, false);
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('[data-settings].is-open').forEach((root) => {
+      setSettingsOpen(root, false);
+      root.querySelector('[data-settings-toggle]')?.focus();
+    });
+  });
+
+  syncThemeButtons();
 </script>
