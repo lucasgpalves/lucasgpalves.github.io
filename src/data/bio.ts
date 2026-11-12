@@ -17,12 +17,11 @@ const shared = {
     { network: 'LinkedIn', url: 'https://linkedin.com/in/lucasgpalves' },
   ],
   certifications: [
-    { name: 'LPIC-2', issuer: 'Pearson VUE', date: '2025-11' },
-    { name: 'LPIC-1', issuer: 'Pearson VUE', date: '2025-10' },
-    { name: 'MD-102: Endpoint Administrator', issuer: 'Pearson VUE', date: '2025-09' },
-    { name: 'ITIL Foundation', issuer: 'PeopleCert', date: '2025-04' },
-    { name: 'AZ-900: Azure Fundamentals', issuer: 'Pearson VUE', date: '2025-02' },
-    { name: 'Scrum Certification', issuer: 'CertiProf', date: '2023-07' },
+    { name: 'LPIC-2', issuer: 'Linux Professional Institute', date: '2025-11', url: 'https://www.credly.com/badges/beb854ca-10bc-48e3-a303-a0ebfc3feade/linked_in_profile' },
+    { name: 'LPIC-1', issuer: 'Linux Professional Institute', date: '2025-10', url: 'https://www.credly.com/badges/f34e6757-85c7-43d1-82a6-841cd4b43ceb/linked_in_profile' },
+    { name: 'MD-102: Endpoint Administrator', issuer: 'Pearson VUE', date: '2025-09', url: 'https://learn.microsoft.com/api/credentials/share/pt-br/LucasAlves-3799/7BD757752768D65B?sharingId=BA6255348FD5FC39' },
+    { name: 'ITIL Foundation', issuer: 'PeopleCert', date: '2025-04', url: '' },
+    { name: 'AZ-900: Azure Fundamentals', issuer: 'Pearson VUE', date: '2025-02', url: 'https://learn.microsoft.com/api/credentials/share/en-us/LucasAlves-3799/506A658333AABDDA?sharingId' }
   ],
   /** Cursos curados para CV (evitar lista longa no PDF). */
   courses: {

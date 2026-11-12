@@ -125,7 +125,15 @@ function formatRange(start: string, end: string) {
       {
         bio.certifications.map((item) => (
           <li>
-            <strong>{item.name}</strong>
+            <strong>
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.name}
+                </a>
+              ) : (
+                item.name
+              )}
+            </strong>
             <span>
               {item.issuer} · {formatDate(item.date)}
             </span>

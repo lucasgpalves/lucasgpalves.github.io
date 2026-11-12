@@ -86,7 +86,13 @@ const t = useTranslations(lang);
         {
           bio.certifications.map((item) => (
             <li>
-              <span class="language-name">{item.name}</span>
+              {item.url ? (
+                <a class="language-name" href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.name}
+                </a>
+              ) : (
+                <span class="language-name">{item.name}</span>
+              )}
               <span class="language-level">
                 {item.issuer} · {item.date}
               </span>
