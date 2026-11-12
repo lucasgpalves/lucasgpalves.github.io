@@ -21,6 +21,7 @@ export function switchLanguagePath(pathname: string, target: Lang): string {
     | { kind: 'projects' }
     | { kind: 'about' }
     | { kind: 'writing' }
+    | { kind: 'cv' }
     | { kind: 'project'; slug: string }
     | { kind: 'essay'; slug: string };
 
@@ -34,6 +35,8 @@ export function switchLanguagePath(pathname: string, target: Lang): string {
     route = { kind: 'about' };
   } else if (clean === '/escritos' || clean === '/en/writing') {
     route = { kind: 'writing' };
+  } else if (clean === '/cv' || clean === '/en/cv') {
+    route = { kind: 'cv' };
   } else {
     const projPt = clean.match(/^\/projetos\/([^/]+)$/);
     const projEn = clean.match(/^\/en\/projects\/([^/]+)$/);
@@ -49,6 +52,7 @@ export function switchLanguagePath(pathname: string, target: Lang): string {
   if (route.kind === 'projects') return paths[target].projects;
   if (route.kind === 'about') return paths[target].about;
   if (route.kind === 'writing') return paths[target].writing;
+  if (route.kind === 'cv') return paths[target].cv;
   if (route.kind === 'project') {
     return target === 'en'
       ? `/en/projects/${route.slug}`

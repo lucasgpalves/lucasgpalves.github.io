@@ -17,8 +17,9 @@ _site/
 .idea/
 .vscode/
 
-# currículo local (PII — não publicar no Pages)
+# rascunhos locais do currículo (fonte / PII)
 Currículo*.pdf
+Currículo*.docx*
 *.docx
-resume*.pdf
-cv*.pdf
+
+# PDFs publicados: public/cv/*.pdf (versionados)

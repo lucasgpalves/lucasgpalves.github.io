@@ -13,6 +13,8 @@ export const ui = {
     langSwitchAria: 'Switch to English',
     ctaProjects: 'Ver projetos',
     ctaAbout: 'Trajetória e stack',
+    ctaCv: 'Baixar CV',
+    ctaCvView: 'Ver currículo',
     featuredEyebrow: 'Experiência profissional',
     featuredTitle: 'O que foi entregue',
     featuredLead:
@@ -79,6 +81,8 @@ export const ui = {
     langSwitchAria: 'Mudar para português',
     ctaProjects: 'View projects',
     ctaAbout: 'Background & stack',
+    ctaCv: 'Download résumé',
+    ctaCvView: 'View résumé',
     featuredEyebrow: 'Professional experience',
     featuredTitle: 'What shipped',
     featuredLead:

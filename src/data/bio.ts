@@ -24,6 +24,25 @@ const shared = {
     { name: 'AZ-900: Azure Fundamentals', issuer: 'Pearson VUE', date: '2025-02' },
     { name: 'Scrum Certification', issuer: 'CertiProf', date: '2023-07' },
   ],
+  /** Cursos curados para CV (evitar lista longa no PDF). */
+  courses: {
+    pt: [
+      { name: 'AWS re/Start Graduate', org: 'Escola da Nuvem', date: '2025-05' },
+      { name: 'Elasticsearch Engineer (On-Demand)', org: 'Elastic', date: '2025-11' },
+      { name: 'DevOps Essentials', org: '4Linux', date: '2025-08' },
+      { name: 'Containers Fundamentals', org: '4Linux', date: '2025-08' },
+      { name: 'Observability and Monitoring Fundamentals', org: '4Linux', date: '2024-12' },
+      { name: 'DevOpsDays BSB', org: 'Evento', date: '2025-09' },
+    ],
+    en: [
+      { name: 'AWS re/Start Graduate', org: 'Escola da Nuvem', date: '2025-05' },
+      { name: 'Elasticsearch Engineer (On-Demand)', org: 'Elastic', date: '2025-11' },
+      { name: 'DevOps Essentials', org: '4Linux', date: '2025-08' },
+      { name: 'Containers Fundamentals', org: '4Linux', date: '2025-08' },
+      { name: 'Observability and Monitoring Fundamentals', org: '4Linux', date: '2024-12' },
+      { name: 'DevOpsDays BSB', org: 'Event', date: '2025-09' },
+    ],
+  },
 } as const;
 
 const localized = {
@@ -251,6 +270,7 @@ export function getBio(lang: Lang = 'pt') {
     picture: shared.picture,
     profiles: shared.profiles,
     certifications: shared.certifications,
+    courses: shared.courses[lang],
     location: shared.location[lang],
     summary: loc.summary,
     focus: loc.focus,

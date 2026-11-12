@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectList from '../../components/ProjectList.astro';
 import StackWall from '../../components/StackWall.astro';
 import { getBio } from '../../data/bio';
+import { cvPdfPath } from '../../i18n/config';
 import { localizePath, useTranslations } from '../../i18n/utils';
 
 const lang = 'en' as const;
@@ -28,6 +29,7 @@ const projects = (await getCollection('projetos'))
       <p class="hero-lead">{bio.summary}</p>
       <div class="cta-row">
         <a class="btn btn-primary" href={localizePath(lang, 'projects')}>{t('ctaProjects')}</a>
+        <a class="btn btn-ghost" href={cvPdfPath(lang)} download>{t('ctaCv')}</a>
         <a class="btn btn-ghost" href={localizePath(lang, 'about')}>{t('ctaAbout')}</a>
       </div>
     </div>

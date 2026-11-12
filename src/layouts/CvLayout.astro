@@ -1,0 +1,33 @@
+---
+import '../styles/cv.css';
+import type { Lang } from '../i18n/config';
+import { getBio } from '../data/bio';
+
+interface Props {
+  lang?: Lang;
+  title?: string;
+}
+
+const lang: Lang = Astro.props.lang ?? 'pt';
+const bio = getBio(lang);
+const title =
+  Astro.props.title ??
+  (lang === 'en'
+    ? `Resume | ${bio.fullName}`
+    : `Currículo | ${bio.fullName}`);
+const htmlLang = lang === 'en' ? 'en' : 'pt-BR';
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="description" content={bio.summary} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

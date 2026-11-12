@@ -1,0 +1,19 @@
+---
+import CvLayout from '../../layouts/CvLayout.astro';
+import ResumeDocument from '../../components/ResumeDocument.astro';
+import { cvPdfPath } from '../../i18n/config';
+
+const lang = 'en' as const;
+---
+
+<CvLayout lang={lang}>
+  <div class="cv-shell">
+    <div class="cv-toolbar">
+      <a href="/en">← Site</a>
+      <a class="primary" href={cvPdfPath(lang)} download>
+        Download PDF
+      </a>
+    </div>
+    <ResumeDocument lang={lang} />
+  </div>
+</CvLayout>

@@ -14,12 +14,14 @@ export const paths = {
     projects: '/projetos',
     about: '/sobre',
     writing: '/escritos',
+    cv: '/cv',
   },
   en: {
     home: '/en',
     projects: '/en/projects',
     about: '/en/about',
     writing: '/en/writing',
+    cv: '/en/cv',
   },
 } as const;
 
@@ -29,4 +31,11 @@ export function projectPath(lang: Lang, id: string) {
 
 export function writingPath(lang: Lang, id: string) {
   return lang === 'en' ? `/en/writing/${id}` : `/escritos/${id}`;
+}
+
+/** PDF estático em public/cv/ */
+export function cvPdfPath(lang: Lang) {
+  return lang === 'en'
+    ? '/cv/lucas-alves-devops-en.pdf'
+    : '/cv/lucas-alves-devops.pdf';
 }

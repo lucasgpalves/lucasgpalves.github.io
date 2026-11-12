@@ -1,0 +1,199 @@
+---
+import { getBio } from '../data/bio';
+import type { Lang } from '../i18n/config';
+
+interface Props {
+  lang?: Lang;
+}
+
+const lang: Lang = Astro.props.lang ?? 'pt';
+const bio = getBio(lang);
+
+const labels =
+  lang === 'en'
+    ? {
+        experience: 'Experience',
+        skills: 'Technical skills',
+        certifications: 'Certifications',
+        languages: 'Languages',
+        education: 'Education',
+        courses: 'Selected courses',
+        volunteer: 'Volunteer',
+        present: 'Present',
+      }
+    : {
+        experience: 'Experiência',
+        skills: 'Competências técnicas',
+        certifications: 'Certificações',
+        languages: 'Idiomas',
+        education: 'Formação',
+        courses: 'Cursos selecionados',
+        volunteer: 'Voluntariado',
+        present: 'Presente',
+      };
+
+const github = bio.profiles.find((p) => p.network === 'GitHub')?.url;
+const linkedin = bio.profiles.find((p) => p.network === 'LinkedIn')?.url;
+
+/** Converte 2025-08 / Presente / Present → formato ATS amigável */
+function formatDate(value: string) {
+  if (/^presente$/i.test(value) || /^present$/i.test(value)) {
+    return labels.present;
+  }
+  const m = value.match(/^(\d{4})-(\d{2})$/);
+  if (m) return `${m[2]}/${m[1]}`;
+  return value;
+}
+
+function formatRange(start: string, end: string) {
+  return `${formatDate(start)} – ${formatDate(end)}`;
+}
+---
+
+<article class="cv-page" id="resume">
+  <header class="cv-header">
+    <p class="cv-kicker">{bio.label}</p>
+    <h1>{bio.fullName}</h1>
+    <p class="cv-role">{bio.work[0]?.position}</p>
+
+    <ul class="cv-contacts">
+      <li>{bio.location}</li>
+      <li>
+        <a href={`mailto:${bio.email}`}>{bio.email}</a>
+      </li>
+      <li>{bio.phone}</li>
+      {
+        linkedin && (
+          <li>
+            <a href={linkedin}>{linkedin.replace(/^https?:\/\//, '')}</a>
+          </li>
+        )
+      }
+      {
+        github && (
+          <li>
+            <a href={github}>{github.replace(/^https?:\/\//, '')}</a>
+          </li>
+        )
+      }
+      <li>
+        <a href={bio.website}>{bio.website.replace(/^https?:\/\//, '')}</a>
+      </li>
+    </ul>
+
+    <p class="cv-summary">{bio.summary}</p>
+  </header>
+
+  <section class="cv-section">
+    <h2>{labels.experience}</h2>
+    {
+      bio.work.map((job) => (
+        <div class="cv-job">
+          <div class="cv-job-head">
+            <h3>
+              {job.position} | {job.company}
+            </h3>
+            <p class="cv-when">{formatRange(job.startDate, job.endDate)}</p>
+          </div>
+          <p class="cv-job-summary">{job.summary}</p>
+          <ul>
+            {job.highlights.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="cv-section">
+    <h2>{labels.skills}</h2>
+    <ul class="cv-skills-text">
+      {
+        bio.skills.map((skill) => (
+          <li>
+            <strong>{skill.name}:</strong> {skill.keywords.join(', ')}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="cv-section">
+    <h2>{labels.certifications}</h2>
+    <ul class="cv-list-compact">
+      {
+        bio.certifications.map((item) => (
+          <li>
+            <strong>{item.name}</strong>
+            <span>
+              {item.issuer} · {formatDate(item.date)}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="cv-section">
+    <h2>{labels.languages}</h2>
+    <ul class="cv-list-compact">
+      {
+        bio.languages.map((item) => (
+          <li>
+            <strong>{item.language}</strong>
+            <span>{item.fluency}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="cv-section cv-edu">
+    <h2>{labels.education}</h2>
+    {
+      bio.education.map((edu) => (
+        <div class="cv-edu-item">
+          <div class="cv-job-head">
+            <h3>
+              {edu.studyType} | {edu.area}
+            </h3>
+            <p class="cv-when">{formatRange(edu.startDate, edu.endDate)}</p>
+          </div>
+          <p>{edu.institution}</p>
+        </div>
+      ))
+    }
+    {
+      bio.volunteer.map((item) => (
+        <div class="cv-edu-item">
+          <div class="cv-job-head">
+            <h3>
+              {item.position} | {item.organization}
+            </h3>
+            <p class="cv-when">{formatRange(item.startDate, item.endDate)}</p>
+          </div>
+          <p>
+            {labels.volunteer}. {item.summary}
+          </p>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="cv-section">
+    <h2>{labels.courses}</h2>
+    <ul class="cv-list-compact">
+      {
+        bio.courses.map((item) => (
+          <li>
+            <strong>
+              {item.name} | {item.org}
+            </strong>
+            <span>{formatDate(item.date)}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</article>

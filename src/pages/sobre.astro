@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StackWall from '../components/StackWall.astro';
 import { getBio } from '../data/bio';
-import { useTranslations } from '../i18n/utils';
+import { cvPdfPath } from '../i18n/config';
+import { localizePath, useTranslations } from '../i18n/utils';
 
 const lang = 'pt' as const;
 const bio = getBio(lang);
@@ -31,6 +32,8 @@ const t = useTranslations(lang);
             </a>
           ))
         }
+        <a class="btn btn-ghost" href={cvPdfPath(lang)} download>{t('ctaCv')}</a>
+        <a class="btn btn-ghost" href={localizePath(lang, 'cv')}>{t('ctaCvView')}</a>
         <a class="btn btn-primary" href={`mailto:${bio.email}`}>{t('email')}</a>
       </div>
     </div>
