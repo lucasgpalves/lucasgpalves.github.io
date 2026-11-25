@@ -45,6 +45,8 @@ for (const job of jobs) {
     [
       '--headless=new',
       '--disable-gpu',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
       '--no-pdf-header-footer',
       `--print-to-pdf=${job.out}`,
       '--print-to-pdf-no-header',

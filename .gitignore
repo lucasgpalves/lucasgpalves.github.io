@@ -19,5 +19,5 @@ _site/
 
 *.pdf
 *.docx
-
+.devcontainer/
 # PDFs publicados: public/cv/*.pdf (versionados)
