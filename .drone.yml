@@ -1,0 +1,39 @@
+kind: pipeline
+type: docker
+name: car-wash
+
+trigger:
+  event:
+    - push
+    - pull_request
+    - custom
+
+steps:
+  - name: secrets
+    image: zricethezav/gitleaks:v8.21.2
+    commands:
+      - gitleaks detect --source . --verbose --redact --exit-code 1
+
+  - name: publish-github
+    image: alpine/git:2.45.2
+    environment:
+      GITHUB_TOKEN:
+        from_secret: github_token
+      GITHUB_REMOTE:
+        from_secret: github_remote_url
+    commands:
+      - |
+        set -eu
+        test "${DRONE_BRANCH}" = "main"
+        test "${DRONE_BUILD_EVENT}" = "push"
+        git config --global user.email "ci@homelab.local"
+        git config --global user.name "drone-ci"
+        git remote add github "https://x-access-token:$${GITHUB_TOKEN}@$${GITHUB_REMOTE}"
+        git push github "HEAD:refs/heads/main"
+    when:
+      branch:
+        - main
+      event:
+        - push
+      status:
+        - success
